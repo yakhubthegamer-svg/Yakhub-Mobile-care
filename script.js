@@ -455,10 +455,10 @@ const closeAuthBtn = document.querySelector('.close-auth');
 const closeProfileBtn = document.querySelector('.close-profile');
 const authForm = document.getElementById('auth-form');
 const authPhoneInput = document.getElementById('auth-phone');
+const authError = document.getElementById('auth-error');
 const otpGroup = document.getElementById('otp-group');
 const sendOtpBtn = document.getElementById('send-otp-btn');
 const verifyOtpBtn = document.getElementById('verify-otp-btn');
-const authError = document.getElementById('auth-error');
 const otpInputs = document.querySelectorAll('.otp-input');
 const resendOtpBtn = document.getElementById('resend-otp-btn');
 const resendTimerText = document.getElementById('resend-timer-text');
@@ -466,9 +466,6 @@ const resendCountdown = document.getElementById('resend-countdown');
 
 let currentGeneratedOTP = null;
 let resendTimerInterval = null;
-
-// SMS API Key (Get yours from Fast2SMS.com)
-const SMS_API_KEY = 'YOUR_API_KEY_HERE'; 
 
 // OTP Input Handling (Focus next/prev)
 otpInputs.forEach((input, index) => {
@@ -522,45 +519,8 @@ function generateRandomOTP() {
     return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-const profileForm = document.getElementById('profile-form');
-const profileNameInput = document.getElementById('profile-name');
-const profilePhoneInput = document.getElementById('profile-phone');
-const profilePicPreview = document.getElementById('profile-pic-preview');
-const profilePicInput = document.getElementById('profile-pic-input');
-const changePicBtn = document.getElementById('change-pic-btn');
-const profileLogoutBtn = document.getElementById('profile-logout-btn');
-const profileAdminBtn = document.getElementById('profile-admin-btn');
-
-// currentUser is now declared at the top
-
-function updateAuthUI() {
-    console.log("updateAuthUI called");
-    if (currentUser) {
-        if (loginBtn) loginBtn.textContent = currentUser.name ? `Hi, ${currentUser.name}` : `Hi, ${currentUser.phone}`;
-    } else {
-        if (loginBtn) loginBtn.textContent = 'Log In / Sign Up';
-    }
-    if (typeof prefillAppointmentForm === 'function') prefillAppointmentForm();
-}
-try {
-    updateAuthUI();
-} catch (e) {
-    console.error("Auth UI initialization failed:", e);
-}
-// toggleAuthModal is now defined at the top as window.toggleAuthModal
-
-// loginBtn.addEventListener('click', toggleAuthModal); // Handled by HTML onclick now
-closeAuthBtn.addEventListener('click', () => {
-    authModal.classList.remove('show');
-    setTimeout(() => authModal.style.display = 'none', 300);
-});
-closeProfileBtn.addEventListener('click', () => {
-    profileModal.classList.remove('show');
-    setTimeout(() => profileModal.style.display = 'none', 300);
-});
-
-// Send OTP
-async function sendOTP() {
+// Send OTP (Simulated Delivery)
+function sendOTP() {
     const phone = authPhoneInput.value.trim();
     if (!phone.match(/^[0-9]{10}$/)) {
         authError.textContent = 'Please enter a valid 10-digit mobile number.';
@@ -571,39 +531,19 @@ async function sendOTP() {
     // Generate Random 6-digit OTP
     currentGeneratedOTP = generateRandomOTP();
     
-    // Show "Sending..." notification
-    showNotification("Sending OTP...", "Please wait a moment...", "info");
+    // Delivery Simulation: Show OTP in a premium notification instead of real SMS
+    showNotification("OTP Sent!", `Your secure code is: ${currentGeneratedOTP}`, "success");
+    console.log(`[SIMULATED OTP] Code for ${phone}: ${currentGeneratedOTP}`);
 
-    try {
-        // Real SMS logic using Fast2SMS
-        if (SMS_API_KEY !== 'YOUR_API_KEY_HERE') {
-            const response = await fetch(`https://www.fast2sms.com/dev/bulkV2?authorization=${SMS_API_KEY}&variables_values=${currentGeneratedOTP}&route=otp&numbers=${phone}`);
-            const result = await response.json();
-            
-            if (result.return) {
-                showNotification("OTP Sent Successfully!", `A real code has been sent to ${phone}`, "success");
-            } else {
-                throw new Error(result.message || "API error");
-            }
-        } else {
-            // Demo Mode fallback
-            showNotification("OTP Sent (Demo)", `Your secure code is: ${currentGeneratedOTP}`, "success");
-            console.log(`[PROPER OTP] Code for ${phone}: ${currentGeneratedOTP}`);
-        }
-
-        otpGroup.style.display = 'block';
-        sendOtpBtn.style.display = 'none';
-        verifyOtpBtn.style.display = 'block';
-        
-        // Clear any previous inputs and focus
-        otpInputs.forEach(input => input.value = '');
-        otpInputs[0].focus();
-        
-        startResendTimer();
-    } catch (error) {
-        console.error("SMS Error:", error);
-        showNotification("Delivery Failed", "Check your API key or internet connection.", "error");
-    }
+    otpGroup.style.display = 'block';
+    sendOtpBtn.style.display = 'none';
+    verifyOtpBtn.style.display = 'block';
+    
+    // Clear inputs and focus first
+    otpInputs.forEach(input => input.value = '');
+    otpInputs[0].focus();
+    
+    startResendTimer();
 }
 
 sendOtpBtn.addEventListener('click', sendOTP);
@@ -624,7 +564,7 @@ authForm.addEventListener('submit', (e) => {
     }
 
     if (enteredOtp !== currentGeneratedOTP) {
-        authError.textContent = 'Invalid OTP. Please check the code sent to your device.';
+        authError.textContent = 'Invalid OTP. Please check the code in the notification.';
         // Clear inputs on failure
         otpInputs.forEach(input => input.value = '');
         otpInputs[0].focus();
@@ -638,16 +578,52 @@ authForm.addEventListener('submit', (e) => {
         user = { phone, name: '', profilePic: '' };
         users.push(user);
         localStorage.setItem('users', JSON.stringify(users));
-        alert('Account created successfully!');
+        showNotification("Account Created", "Welcome to Yakhub Mobile Care!", "success");
+    } else {
+        showNotification("Logged In", "Welcome back!", "success");
     }
 
     currentUser = user;
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
     updateAuthUI();
-    requestNotificationPermission(); // Request permission on login
+    requestNotificationPermission(); 
     
     authModal.classList.remove('show');
     setTimeout(() => authModal.style.display = 'none', 300);
+});
+
+const profileForm = document.getElementById('profile-form');
+const profileNameInput = document.getElementById('profile-name');
+const profilePhoneInput = document.getElementById('profile-phone');
+const profilePicPreview = document.getElementById('profile-pic-preview');
+const profilePicInput = document.getElementById('profile-pic-input');
+const changePicBtn = document.getElementById('change-pic-btn');
+const profileLogoutBtn = document.getElementById('profile-logout-btn');
+const profileAdminBtn = document.getElementById('profile-admin-btn');
+
+function updateAuthUI() {
+    console.log("updateAuthUI called");
+    if (currentUser) {
+        if (loginBtn) loginBtn.textContent = currentUser.name ? `Hi, ${currentUser.name}` : `Hi, ${currentUser.phone}`;
+    } else {
+        if (loginBtn) loginBtn.textContent = 'Log In / Sign Up';
+    }
+    if (typeof prefillAppointmentForm === 'function') prefillAppointmentForm();
+}
+
+try {
+    updateAuthUI();
+} catch (e) {
+    console.error("Auth UI initialization failed:", e);
+}
+
+closeAuthBtn.addEventListener('click', () => {
+    authModal.classList.remove('show');
+    setTimeout(() => authModal.style.display = 'none', 300);
+});
+closeProfileBtn.addEventListener('click', () => {
+    profileModal.classList.remove('show');
+    setTimeout(() => profileModal.style.display = 'none', 300);
 });
 
 // Profile Picture Handling
@@ -717,6 +693,7 @@ const adminSubmitBtn = document.getElementById('admin-submit');
 const adminError = document.getElementById('admin-error');
 const adminUsersTableBody = document.querySelector('#admin-users-table tbody');
 const adminLogoutBtn = document.getElementById('admin-logout');
+
 
 // Tabs
 const tabBtns = document.querySelectorAll('.admin-tab-btn');
