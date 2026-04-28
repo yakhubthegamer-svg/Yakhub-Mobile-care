@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yakhub Mobile Care | Premium Parts & Repair</title>
+    <meta name="description" content="Yakhub Mobile Care offers high-quality mobile spare parts, accessories, and professional repair services.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-text">Yakhub</span> Mobile Care
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#parts">Parts</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions">
+            <button class="btn-secondary auth-btn" id="login-btn" onclick="toggleAuthModal()">Log In</button>
+            <button class="btn-primary cart-btn" onclick="toggleCart()">Cart (0)</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Precision Care for Your Devices</h1>
+                <p>Top-tier mobile parts and expert repair services you can trust.</p>
+                <div class="hero-buttons">
+                    <a href="#parts" class="btn-primary">Explore Parts</a>
+                    <a href="#services" class="btn-secondary">Our Services</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <div class="glow-effect"></div>
+                <!-- Note: Update with the actual filename of the hero image -->
+                <img src="assets/images/hero_mobile_repair_1777391818026.png" alt="Disassembled Smartphone" class="hero-image">
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2>Welcome to Yakhub Mobile Care</h2>
+                    <p>With years of experience in the mobile tech industry, Yakhub Mobile Care has established itself as a premier destination for high-quality mobile spare parts and professional repair services. We understand how essential your smartphone is to your daily life, which is why we focus on delivering rapid, reliable, and transparent services.</p>
+                    <p>Whether you're looking for genuine OEM parts to fix a device yourself, or need our certified technicians to bring your dead phone back to life, we've got you covered. Our inventory includes everything from OLED displays to tiny logic board microchips.</p>
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <h3>5000+</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>100%</h3>
+                            <p>Quality Parts</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>24/7</h3>
+                            <p>Support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="parts" class="parts-section">
+            <div class="section-header">
+                <h2>Premium Mobile Parts</h2>
+                <p>Genuine and high-quality replacement parts for all major brands.</p>
+            </div>
+            <div class="parts-grid">
+                <!-- Part 1 -->
+                <div class="part-card">
+                    <div class="part-image-wrapper">
+                        <!-- Note: Update with actual filename -->
+                        <img src="assets/images/part_screen_1777391833012.png" alt="OLED Display Screen" class="part-image">
+                        <div class="part-overlay">
+                            <button class="btn-icon view-details-btn" data-id="1">View Details</button>
+                        </div>
+                    </div>
+                    <div class="part-info">
+                        <h3>OLED Display Module</h3>
+                        <p class="part-category">Screens</p>
+                        <div class="part-footer">
+                            <span class="price">₹10,000</span>
+                            <button class="add-to-cart-btn" data-id="1">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Part 2 -->
+                <div class="part-card">
+                    <div class="part-image-wrapper">
+                        <img src="assets/images/part_battery_1777391851734.png" alt="Lithium-ion Battery" class="part-image">
+                        <div class="part-overlay">
+                            <button class="btn-icon view-details-btn" data-id="2">View Details</button>
+                        </div>
+                    </div>
+                    <div class="part-info">
+                        <h3>High-Capacity Battery</h3>
+                        <p class="part-category">Batteries</p>
+                        <div class="part-footer">
+                            <span class="price">₹3,500</span>
+                            <button class="add-to-cart-btn" data-id="2">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 3 -->
+                <div class="part-card">
+                    <div class="part-image-wrapper">
+                        <img src="assets/images/part_camera_1777391867296.png" alt="Camera Module" class="part-image">
+                        <div class="part-overlay">
+                            <button class="btn-icon view-details-btn" data-id="3">View Details</button>
+                        </div>
+                    </div>
+                    <div class="part-info">
+                        <h3>Multi-Lens Camera Module</h3>
+                        <p class="part-category">Cameras</p>
+                        <div class="part-footer">
+                            <span class="price">₹7,000</span>
+                            <button class="add-to-cart-btn" data-id="3">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 4 -->
+                <div class="part-card">
+                    <div class="part-image-wrapper">
+                        <img src="assets/images/part_motherboard_1777391882445.png" alt="Logic Board" class="part-image">
+                        <div class="part-overlay">
+                            <button class="btn-icon view-details-btn" data-id="4">View Details</button>
+                        </div>
+                    </div>
+                    <div class="part-info">
+                        <h3>Main Logic Board</h3>
+                        <p class="part-category">Motherboards</p>
+                        <div class="part-footer">
+                            <span class="price">₹20,000</span>
+                            <button class="add-to-cart-btn" data-id="4">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 5 -->
+                <div class="part-card">
+                    <div class="part-image-wrapper">
+                        <img src="assets/images/part_backdoor_1777403770870.png" alt="Glass Back Door" class="part-image">
+                        <div class="part-overlay">
+                            <button class="btn-icon view-details-btn" data-id="5">View Details</button>
+                        </div>
+                    </div>
+                    <div class="part-info">
+                        <h3>Premium Glass Back Door</h3>
+                        <p class="part-category">Back Panels</p>
+                        <div class="part-footer">
+                            <span class="price">₹1,500</span>
+                            <button class="add-to-cart-btn" data-id="5">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 6 -->
+                <div class="part-card">
+                    <div class="part-image-wrapper">
+                        <img src="assets/images/part_housing_1777403939796.png" alt="Metal Housing" class="part-image">
+                        <div class="part-overlay">
+                            <button class="btn-icon view-details-btn" data-id="6">View Details</button>
+                        </div>
+                    </div>
+                    <div class="part-info">
+                        <h3>Full Metal Housing</h3>
+                        <p class="part-category">Housings</p>
+                        <div class="part-footer">
+                            <span class="price">₹2,800</span>
+                            <button class="add-to-cart-btn" data-id="6">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 7 -->
+                <div class="part-card">
+                    <div class="part-image-wrapper">
+                        <img src="assets/images/part_charging_pcb_1777403955848.png" alt="Charging PCB" class="part-image">
+                        <div class="part-overlay">
+                            <button class="btn-icon view-details-btn" data-id="7">View Details</button>
+                        </div>
+                    </div>
+                    <div class="part-info">
+                        <h3>Charging Port PCB</h3>
+                        <p class="part-category">Internal Modules</p>
+                        <div class="part-footer">
+                            <span class="price">₹850</span>
+                            <button class="add-to-cart-btn" data-id="7">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 8 -->
+                <div class="part-card">
+                    <div class="part-image-wrapper">
+                        <img src="assets/images/part_speaker_1777403970739.png" alt="Loudspeaker Module" class="part-image">
+                        <div class="part-overlay">
+                            <button class="btn-icon view-details-btn" data-id="8">View Details</button>
+                        </div>
+                    </div>
+                    <div class="part-info">
+                        <h3>Loudspeaker Module</h3>
+                        <p class="part-category">Audio</p>
+                        <div class="part-footer">
+                            <span class="price">₹650</span>
+                            <button class="add-to-cart-btn" data-id="8">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services-section">
+            <div class="section-header">
+                <h2>Expert Repair Services</h2>
+                <p>Fast, reliable, and professional repairs by certified technicians.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Screen Replacement</h3>
+                    <p>Cracked or unresponsive screen? We'll have it looking brand new in under an hour.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔋</div>
+                    <h3>Battery Replacement</h3>
+                    <p>Restore your phone's all-day battery life with our high-capacity replacements.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💧</div>
+                    <h3>Water Damage</h3>
+                    <p>Dropped your phone in water? Bring it to us immediately for advanced recovery.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="book-appointment container" id="appointment" style="margin-bottom: 50px;">
+        <div class="section-header" style="text-align: center; margin-bottom: 30px;">
+            <h2 class="glow-text">Book an Appointment</h2>
+            <p style="color: var(--text-secondary); margin-top: 10px;">Skip the line and schedule your repair or consultation.</p>
+        </div>
+        <div style="background: var(--surface-color); padding: 40px; border-radius: 20px; border: 1px solid var(--surface-border); box-shadow: 0 10px 30px rgba(0, 240, 255, 0.05); max-width: 600px; margin: 0 auto;">
+            <form id="appointment-form">
+                <div class="form-group">
+                    <label for="appt-name">Full Name</label>
+                    <input type="text" id="appt-name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="appt-phone">Mobile Number</label>
+                    <input type="tel" id="appt-phone" required placeholder="Enter 10-digit number" pattern="[0-9]{10}">
+                </div>
+                <div class="form-group">
+                    <label for="appt-device">Device Model</label>
+                    <input type="text" id="appt-device" required placeholder="E.g., iPhone 13 Pro, Samsung S22">
+                </div>
+                <div class="form-group">
+                    <label for="appt-date">Preferred Date & Time</label>
+                    <input type="datetime-local" id="appt-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="appt-issue">Issue Description</label>
+                    <textarea id="appt-issue" rows="3" required placeholder="Briefly describe the problem..." style="width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--surface-border); color: #fff; padding: 12px; border-radius: 8px; font-family: inherit; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" class="btn-primary full-width mt-4" style="font-size: 1.1rem; padding: 15px;">Confirm Appointment</button>
+            </form>
+        </div>
+    </section>
+
+
+
+    <!-- Policies Section -->
+    <section class="policies-section container" style="margin-bottom: 50px; padding: 30px; background: rgba(255, 255, 255, 0.02); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.05);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+            <div class="policy-item">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">📦 Return Policy</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">4 Days easy return policy if the product is damaged, not working, or if you are not satisfied with the quality.</p>
+            </div>
+            <div class="policy-item">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">📹 Unboxing Mandatory</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">A raw, unedited unboxing video clip is mandatory for claiming damages during transport.</p>
+            </div>
+            <div class="policy-item">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">🚫 Cancellation Policy</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">If canceled during transition, an 80% refund will be processed to the original payment mode.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>Yakhub Mobile Care</h2>
+                <p>Your one-stop destination for mobile parts and professional repair services.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#parts">Shop Parts</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p>📍 123 Tech Avenue, Silicon City</p>
+                <p>📞 +91 83099 11495</p>
+                <p>✉️ support@yakhubmobile.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yakhub Mobile Care. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Part Details -->
+    <div id="part-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modal-image" src="" alt="Part Image">
+                </div>
+                <div class="modal-details">
+                    <h2 id="modal-title">Part Title</h2>
+                    <p class="modal-price" id="modal-price">$0.00</p>
+                    <div class="modal-description" id="modal-description">
+                        Detailed description goes here.
+                    </div>
+                    <div class="modal-specs">
+                        <h3>Specifications:</h3>
+                        <ul id="modal-specs-list">
+                            <!-- Populated via JS -->
+                        </ul>
+                    </div>
+                    <button class="btn-primary full-width mt-4" id="modal-add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <!-- Cart items populated via JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn-primary full-width mt-4" id="checkout-btn" onclick="openCheckoutModal()">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay"></div>
+
+    <!-- Auth Modal (Phone + OTP) -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal close-auth">&times;</span>
+            <div class="auth-form-container">
+                <h2 id="auth-title">Log In / Sign Up</h2>
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label for="auth-phone">Mobile Number</label>
+                        <input type="tel" id="auth-phone" required placeholder="Enter 10-digit number" pattern="[0-9]{10}">
+                    </div>
+                    <div class="form-group" id="otp-group" style="display: none;">
+                        <label for="auth-otp">Enter OTP</label>
+                        <input type="text" id="auth-otp" placeholder="Enter 4-digit OTP" maxlength="4">
+                    </div>
+                    <div id="auth-error" class="auth-error"></div>
+                    <button type="button" class="btn-secondary full-width mt-4" id="send-otp-btn">Send OTP</button>
+                    <button type="submit" class="btn-primary full-width mt-4" id="verify-otp-btn" style="display: none;">Verify & Proceed</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal close-profile">&times;</span>
+            <div class="auth-form-container">
+                <h2>Your Profile</h2>
+                <div class="profile-picture-container">
+                    <img src="assets/images/part_screen_1777391833012.png" alt="Profile" id="profile-pic-preview" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 15px; display: block; border: 2px solid var(--primary-color);">
+                    <input type="file" id="profile-pic-input" accept="image/*" style="display: none;">
+                    <button type="button" class="btn-secondary" id="change-pic-btn" style="display: block; margin: 0 auto 20px; font-size: 0.8rem; padding: 5px 10px;">Change Picture</button>
+                </div>
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label for="profile-name">Full Name</label>
+                        <input type="text" id="profile-name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-phone">Mobile Number</label>
+                        <input type="text" id="profile-phone" disabled style="opacity: 0.6; cursor: not-allowed;">
+                    </div>
+                    <button type="button" class="btn-secondary full-width mt-4" id="profile-admin-btn" style="display: none; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: #000; border: none; font-weight: bold;">👑 Open Admin Dashboard</button>
+                    <button type="submit" class="btn-primary full-width mt-4">Save Profile</button>
+                    <button type="button" class="btn-secondary full-width mt-4" id="profile-logout-btn" style="background: rgba(255, 71, 87, 0.2); color: #ff4757; border: 1px solid #ff4757;">Log Out</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div id="admin-modal" class="modal">
+        <div class="modal-content" style="max-width: 900px; width: 90%; padding: 40px; background: rgba(10, 10, 15, 0.95);">
+            <span class="close-modal close-admin">&times;</span>
+            <div id="admin-login-view">
+                <h2 style="font-size: 2rem; margin-bottom: 25px; text-align: center; color: var(--primary-color);">Admin Access</h2>
+                <div class="form-group">
+                    <label for="admin-password">Admin Password</label>
+                    <input type="password" id="admin-password" placeholder="Enter admin password">
+                </div>
+                <div id="admin-error" class="auth-error"></div>
+                <button class="btn-primary full-width mt-4" id="admin-submit">Login as Admin</button>
+            </div>
+            <div id="admin-dashboard-view" style="display: none; width: 100%;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--primary-color);">Admin Dashboard</h2>
+                <div class="admin-tabs" style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button class="btn-primary admin-tab-btn" data-tab="users" style="flex: 1; padding: 8px;">Users</button>
+                    <button class="btn-secondary admin-tab-btn" data-tab="support" style="flex: 1; padding: 8px;">Support Tickets</button>
+                    <button class="btn-secondary admin-tab-btn" data-tab="appointments" style="flex: 1; padding: 8px;">Appointments</button>
+                    <button class="btn-secondary admin-tab-btn" data-tab="orders" style="flex: 1; padding: 8px;">Orders</button>
+                </div>
+                
+                <div id="admin-users-tab" class="admin-tab-content">
+                    <div class="admin-table-container">
+                        <table id="admin-users-table" class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Phone Number</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Users injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="admin-support-tab" class="admin-tab-content" style="display: none;">
+                    <div style="display: flex; gap: 15px; height: 400px;">
+                        <div class="admin-chat-sidebar" style="flex: 1; min-width: 250px; max-width: 300px; border: 1px solid var(--surface-border); border-radius: 8px; overflow-y: auto; background: rgba(0,0,0,0.5);">
+                            <ul id="admin-chat-list" style="list-style: none; padding: 0; margin: 0;">
+                                <!-- Chat list injected here -->
+                            </ul>
+                        </div>
+                        <div class="admin-chat-window" style="flex: 2; border: 1px solid var(--surface-border); border-radius: 8px; display: flex; flex-direction: column; background: rgba(0,0,0,0.5);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; background: rgba(255,255,255,0.05); border-bottom: 1px solid var(--surface-border);">
+                                <h3 id="admin-chat-title" style="margin: 0; font-size: 1rem; color: var(--primary-color);">No chat selected</h3>
+                                <button id="admin-chat-resolve" class="btn-secondary" style="padding: 5px 10px; font-size: 0.8rem; display: none; background: rgba(255, 71, 87, 0.2); color: #ff4757; border: 1px solid #ff4757;">Close Ticket</button>
+                            </div>
+                            <div id="admin-chat-history" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+                                <p style="text-align:center; color: var(--text-secondary); margin: auto;">Select a chat to start messaging</p>
+                            </div>
+                            <div style="display: flex; padding: 10px; border-top: 1px solid var(--surface-border); background: rgba(255,255,255,0.05);">
+                                <input type="text" id="admin-chat-input" placeholder="Type a reply..." style="flex: 1; background: transparent; border: none; color: #fff; padding: 8px; outline: none;" disabled>
+                                <button id="admin-chat-send" class="btn-primary" style="padding: 8px 15px; border-radius: 6px;" disabled>Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="admin-appointments-tab" class="admin-tab-content" style="display: none;">
+                    <div class="admin-table-container">
+                        <table id="admin-appointments-table" class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Date & Time</th>
+                                    <th>Customer</th>
+                                    <th>Device & Issue</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Appointments injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="admin-orders-tab" class="admin-tab-content" style="display: none;">
+                    <div class="admin-table-container">
+                        <table id="admin-orders-table" class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer & Address</th>
+                                    <th>Items</th>
+                                    <th>Total & Payment</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Orders injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button class="btn-secondary full-width mt-4" id="admin-logout">Close Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Widget -->
+    <div id="help-widget" class="help-widget">
+        <button id="help-toggle-btn" class="help-toggle-btn">💬 Support</button>
+        <div id="help-chat-box" class="help-chat-box" style="display: none;">
+            <div class="help-chat-header">
+                <h3>Customer Support</h3>
+                <span id="close-help-btn" style="cursor: pointer;">&times;</span>
+            </div>
+            <div class="help-chat-body" id="help-chat-body">
+                <!-- Messages injected via JS -->
+            </div>
+            <div class="help-chat-footer">
+                <input type="text" id="help-msg-input" placeholder="Type your issue...">
+                <button id="help-send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content" style="max-width: 600px; width: 90%; padding: 30px; background: rgba(10, 10, 15, 0.98);">
+            <span class="close-modal close-checkout">&times;</span>
+            <h2 style="color: var(--primary-color); margin-bottom: 20px;">Complete Your Order</h2>
+            <form id="checkout-form" style="margin-top: 30px;">
+                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 20px;">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="checkout-name" required placeholder="Receiver's name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="checkout-phone" required placeholder="10-digit number">
+                    </div>
+                </div>
+                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 20px;">
+                    <div class="form-group">
+                        <label for="checkout-state">State</label>
+                        <select id="checkout-state" required onchange="updateCities()">
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Other">Other UTs</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="city-group" style="display: none;">
+                        <label for="checkout-city">City</label>
+                        <select id="checkout-city" required onchange="calculateOrder()">
+                            <option value="">Select City</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="order-items-summary" style="margin-bottom: 20px; max-height: 150px; overflow-y: auto; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                    <h4 style="margin-bottom: 10px; color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase;">Items in Cart</h4>
+                    <div id="checkout-items-list">
+                        <!-- Items will be injected here -->
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <label>Detailed Delivery Address</label>
+                    <textarea id="checkout-address" rows="3" required placeholder="House No, Street, Landmark, Area"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select id="checkout-payment" required onchange="calculateOrder()">
+                        <option value="prepaid">Prepaid (Card / UPI / QR)</option>
+                        <option value="cod">Cash on Delivery (₹200 extra)</option>
+                    </select>
+                </div>
+                
+                <div id="order-summary" style="margin-top: 40px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 1.05rem;">
+                        <span style="color: var(--text-secondary);">Subtotal:</span> <span id="summary-subtotal">₹0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 1.05rem;">
+                        <span style="color: var(--text-secondary);">Shipping:</span> <span id="summary-shipping">₹0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 1.05rem;" id="cod-fee-row">
+                        <span style="color: var(--text-secondary);">COD Fee:</span> <span id="summary-cod">₹0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.5rem; color: var(--primary-color); margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                        <span>Grand Total:</span> <span id="summary-total">₹0</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary full-width mt-4" style="font-size: 1.1rem; padding: 15px;">Place Order Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <!-- Thank You Modal -->
+    <div id="thank-you-modal" class="modal">
+        <div class="modal-content thank-you-content">
+            <div class="success-icon">
+                <div class="check-mark"></div>
+            </div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Thank you for shopping with <strong>Yakhub Mobile Care</strong>. Your order has been received and is being processed.</p>
+            
+            <div class="order-id-display">
+                Order ID: <span id="display-order-id">#ORD123456</span>
+            </div>
+
+            <div class="policy-reminder">
+                <p>⚠️ <strong>Reminder:</strong> Unboxing video is mandatory for any damage claims.</p>
+            </div>
+
+            <button class="btn-primary" onclick="location.reload()" style="padding: 15px 40px; font-size: 1.1rem;">Shop Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
