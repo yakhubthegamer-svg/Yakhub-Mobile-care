@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 <body>
     <header class="navbar">
@@ -386,8 +386,19 @@
                         <input type="tel" id="auth-phone" required placeholder="Enter 10-digit number" pattern="[0-9]{10}">
                     </div>
                     <div class="form-group" id="otp-group" style="display: none;">
-                        <label for="auth-otp">Enter OTP</label>
-                        <input type="text" id="auth-otp" placeholder="Enter 4-digit OTP" maxlength="4">
+                        <label for="auth-otp">Enter 6-digit OTP</label>
+                        <div class="otp-inputs-container">
+                            <input type="text" class="otp-input" maxlength="1" data-index="0">
+                            <input type="text" class="otp-input" maxlength="1" data-index="1">
+                            <input type="text" class="otp-input" maxlength="1" data-index="2">
+                            <input type="text" class="otp-input" maxlength="1" data-index="3">
+                            <input type="text" class="otp-input" maxlength="1" data-index="4">
+                            <input type="text" class="otp-input" maxlength="1" data-index="5">
+                        </div>
+                        <div class="resend-container">
+                            <span id="resend-timer-text">Resend OTP in <span id="resend-countdown">60</span>s</span>
+                            <button type="button" id="resend-otp-btn" style="display: none;">Resend OTP</button>
+                        </div>
                     </div>
                     <div id="auth-error" class="auth-error"></div>
                     <button type="button" class="btn-secondary full-width mt-4" id="send-otp-btn">Send OTP</button>
@@ -668,6 +679,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=1.1"></script>
 </body>
 </html>

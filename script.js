@@ -455,11 +455,72 @@ const closeAuthBtn = document.querySelector('.close-auth');
 const closeProfileBtn = document.querySelector('.close-profile');
 const authForm = document.getElementById('auth-form');
 const authPhoneInput = document.getElementById('auth-phone');
-const authOtpInput = document.getElementById('auth-otp');
 const otpGroup = document.getElementById('otp-group');
 const sendOtpBtn = document.getElementById('send-otp-btn');
 const verifyOtpBtn = document.getElementById('verify-otp-btn');
 const authError = document.getElementById('auth-error');
+const otpInputs = document.querySelectorAll('.otp-input');
+const resendOtpBtn = document.getElementById('resend-otp-btn');
+const resendTimerText = document.getElementById('resend-timer-text');
+const resendCountdown = document.getElementById('resend-countdown');
+
+let currentGeneratedOTP = null;
+let resendTimerInterval = null;
+
+// SMS API Key (Get yours from Fast2SMS.com)
+const SMS_API_KEY = 'YOUR_API_KEY_HERE'; 
+
+// OTP Input Handling (Focus next/prev)
+otpInputs.forEach((input, index) => {
+    input.addEventListener('input', (e) => {
+        // Allow only numbers
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        
+        if (e.target.value && index < otpInputs.length - 1) {
+            otpInputs[index + 1].focus();
+        }
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !e.target.value && index > 0) {
+            otpInputs[index - 1].focus();
+        }
+    });
+
+    // Add paste support for the first input
+    if (index === 0) {
+        input.addEventListener('paste', (e) => {
+            const data = e.clipboardData.getData('text');
+            if (data.length === 6 && /^\d+$/.test(data)) {
+                otpInputs.forEach((inp, i) => inp.value = data[i]);
+                otpInputs[5].focus(); // Focus last box after paste
+            }
+        });
+    }
+});
+
+function startResendTimer() {
+    let timeLeft = 60;
+    resendOtpBtn.style.display = 'none';
+    resendTimerText.style.display = 'block';
+    resendCountdown.textContent = timeLeft;
+
+    if (resendTimerInterval) clearInterval(resendTimerInterval);
+    
+    resendTimerInterval = setInterval(() => {
+        timeLeft--;
+        resendCountdown.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(resendTimerInterval);
+            resendTimerText.style.display = 'none';
+            resendOtpBtn.style.display = 'inline-block';
+        }
+    }, 1000);
+}
+
+function generateRandomOTP() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
 
 const profileForm = document.getElementById('profile-form');
 const profileNameInput = document.getElementById('profile-name');
@@ -499,28 +560,74 @@ closeProfileBtn.addEventListener('click', () => {
 });
 
 // Send OTP
-sendOtpBtn.addEventListener('click', () => {
+async function sendOTP() {
     const phone = authPhoneInput.value.trim();
     if (!phone.match(/^[0-9]{10}$/)) {
         authError.textContent = 'Please enter a valid 10-digit mobile number.';
         return;
     }
     authError.textContent = '';
-    // Simulate sending OTP
-    alert('For demo purposes, your OTP is: 1234');
-    otpGroup.style.display = 'block';
-    sendOtpBtn.style.display = 'none';
-    verifyOtpBtn.style.display = 'block';
-});
+    
+    // Generate Random 6-digit OTP
+    currentGeneratedOTP = generateRandomOTP();
+    
+    // Show "Sending..." notification
+    showNotification("Sending OTP...", "Please wait a moment...", "info");
+
+    try {
+        // Real SMS logic using Fast2SMS
+        if (SMS_API_KEY !== 'YOUR_API_KEY_HERE') {
+            const response = await fetch(`https://www.fast2sms.com/dev/bulkV2?authorization=${SMS_API_KEY}&variables_values=${currentGeneratedOTP}&route=otp&numbers=${phone}`);
+            const result = await response.json();
+            
+            if (result.return) {
+                showNotification("OTP Sent Successfully!", `A real code has been sent to ${phone}`, "success");
+            } else {
+                throw new Error(result.message || "API error");
+            }
+        } else {
+            // Demo Mode fallback
+            showNotification("OTP Sent (Demo)", `Your secure code is: ${currentGeneratedOTP}`, "success");
+            console.log(`[PROPER OTP] Code for ${phone}: ${currentGeneratedOTP}`);
+        }
+
+        otpGroup.style.display = 'block';
+        sendOtpBtn.style.display = 'none';
+        verifyOtpBtn.style.display = 'block';
+        
+        // Clear any previous inputs and focus
+        otpInputs.forEach(input => input.value = '');
+        otpInputs[0].focus();
+        
+        startResendTimer();
+    } catch (error) {
+        console.error("SMS Error:", error);
+        showNotification("Delivery Failed", "Check your API key or internet connection.", "error");
+    }
+}
+
+sendOtpBtn.addEventListener('click', sendOTP);
+resendOtpBtn.addEventListener('click', sendOTP);
 
 // Verify OTP & Login/Signup
 authForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const phone = authPhoneInput.value.trim();
-    const otp = authOtpInput.value.trim();
+    
+    // Combine all 6 inputs
+    let enteredOtp = '';
+    otpInputs.forEach(input => enteredOtp += input.value);
 
-    if (otp !== '1234') {
-        authError.textContent = 'Invalid OTP. Try 1234.';
+    if (enteredOtp.length < 6) {
+        authError.textContent = 'Please enter the full 6-digit code.';
+        return;
+    }
+
+    if (enteredOtp !== currentGeneratedOTP) {
+        authError.textContent = 'Invalid OTP. Please check the code sent to your device.';
+        // Clear inputs on failure
+        otpInputs.forEach(input => input.value = '');
+        otpInputs[0].focus();
         return;
     }
 

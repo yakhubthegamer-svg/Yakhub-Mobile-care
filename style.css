@@ -1240,3 +1240,61 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-color);
 }
+/* OTP Premium Styles */
+.otp-inputs-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.otp-input {
+    width: 45px !important;
+    height: 55px !important;
+    text-align: center;
+    font-size: 1.5rem !important;
+    font-weight: 800;
+    color: var(--primary-color) !important;
+    border: 2px solid var(--surface-border) !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    transition: all 0.3s ease;
+}
+
+.otp-input:focus {
+    border-color: var(--primary-color) !important;
+    background: rgba(0, 240, 255, 0.05) !important;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.resend-container {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+#resend-timer-text {
+    color: var(--text-secondary);
+}
+
+#resend-otp-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+}
+
+#resend-otp-btn:hover {
+    color: #fff;
+}
+
+#resend-countdown {
+    color: var(--primary-color);
+    font-weight: bold;
+}
